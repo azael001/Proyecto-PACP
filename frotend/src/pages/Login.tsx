@@ -1,42 +1,122 @@
-import Typography  from "@mui/material/Typography";
-import  Button  from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import { useState } from "react";
 import Grid from "@mui/material/Grid2";
+import TextField from "@mui/material/TextField";
+import Button  from '@mui/material/Button';
+import Typography  from "@mui/material/Typography";
+import LockIcon from '@mui/icons-material/Lock';
+import AlertTitle from '@mui/material/AlertTitle';
+import Alert from '@mui/material/Alert'
 function Login() {
+    const [data, setData] = useState({
+      user: "",
+      password: "",
+      
+    });
+    const [showSuccess, setShowSuccess] = useState(false); 
+    const [showError, setShowError] = useState(false); 
+    const handleSubmit = (e : any) => {
+      
+      e.preventDefault();
+      console.log(data)
+    };
+    const loginUser = (e: any) => {
+      setData({
+        ...data,
+        user: e.target.value,
+      });
+    };
+    const loginPass = (e: any) => {
+      setData({
+        ...data,
+        password: e.target.value,
+      });
+    };
+    const handleConfirm = (e: any) => {
+      if(data.user=="lala" && data.password=="pepe"){
+        setShowSuccess(true); 
+        setShowError(false); 
+      }
+      else{
+        setShowError(true);    
+        setShowSuccess(false);  
+      }    
+    };
     return (
-      <Grid container spacing={2} direction={"column"} sx={{margin:0,padding:0,textAlign:'left'}} > 
-        <Grid>
-        <Typography variant="h1" color="primary">Página Login Pablo Azael Carballo H1</Typography>
-        </Grid>  
-        <Grid>
-        <Typography variant="h2" color="secondary">Página Login Pablo Azael Carballo H2</Typography>
-        </Grid>
-        <Grid>  
-        <Typography variant="h3" color="error">Página Login Pablo Azael Carballo H3</Typography>
-        </Grid>
-        <Grid>
-        <Typography variant="h3" color="primary">Página Login Pablo Azael Carballo H3</Typography>
-        </Grid>
-        <Grid>
-        <Typography variant="subtitle1" color="blue">Página Login Pablo Azael Carballo subtitle1</Typography>
-        </Grid>
-        <Grid>  
-        <Typography variant="body1" color="brown">Página Login Pablo Azael Carballo body1</Typography>
-        </Grid>
-        <Grid>  
-        <Typography variant="caption" color="green">Página Login Pablo Azael Carballo caption</Typography>
-        </Grid>
-        <Grid>
-        <Button variant="text">text</Button>
-        </Grid>
-        <Grid>
-        <Button variant="contained" color="secondary">contained</Button>
-        </Grid>
-        <Grid>
-        <Button variant="outlined" color="primary">outline</Button>
-        </Grid>
-     </Grid>
+ 
+      <Grid container
+        justifyContent="center"  // Centra horizontalmente
+        alignItems="center"      // Centra verticalmente
+        style={{ minHeight: '100vh' }} // Altura mínima para centrar en toda la pantalla
+      >
+      
+      <Box component ='form'
+        onSubmit={handleSubmit}
+        sx={{
+          display: 'block',
+          alignItems: 'center',
+         
+          width:800,
+          height:300,
+          border: '1px solid #ddd', // Bordes para el formulario
+        }}>
+          <Grid container spacing={{xs:0.5,sm:1, md:1.5 ,xl:2}}>
+            <Grid size={12}>
+              <Typography variant="h5" sx={{textAlign:"center", mt:3,mb:2}}>
+                Sistema de acceso
+              </Typography>
+            </Grid>
+            <Grid size={12} sx={{ textAlign: 'center' }}>
+             <LockIcon fontSize="large">
+
+             </LockIcon>
+            </Grid>
+              <Grid size={12}>
+              <TextField
+                required
+                label="Nombre"
+                variant="outlined"
+                fullWidth
+                value={data.user}
+                onChange={loginUser}
+              />
+              </Grid>
+              <Grid size={12}>
+              <TextField
+                required
+                label="Password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                value={data.password}
+                onChange={loginPass}
+              />
+              </Grid>
+              <Grid size={12}>
+              <Button
+              variant="outlined"
+              type="submit"
+              sx={{backgroundColor:"primary.main",color:"white"}}
+              fullWidth
+              onClick={handleConfirm}>
+                Acceder
+              </Button>
+              {showSuccess && (
+              <Alert severity="success">
+               <AlertTitle>Success</AlertTitle>
+                La contraseña es correcta
+              </Alert>
+              )}
+              {showError && (
+              <Alert severity="error">
+               <AlertTitle>Error</AlertTitle>
+                La contraseña es incorrecta
+              </Alert>
+               )}
+              </Grid>
+            </Grid>
+        </Box>
+    </Grid>
     )
   }
   export default Login
-  
-

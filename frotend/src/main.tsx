@@ -4,7 +4,6 @@ import App from './App.tsx'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeOptions } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
 export const themeOptions: ThemeOptions = {
   palette: {
     mode: 'light',
