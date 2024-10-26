@@ -7,7 +7,10 @@ import Typography  from "@mui/material/Typography";
 import LockIcon from '@mui/icons-material/Lock';
 import AlertTitle from '@mui/material/AlertTitle';
 import Alert from '@mui/material/Alert'
+ import {useNavigate } from 'react-router-dom'
 function Login() {
+  const navigate = useNavigate()
+
     const [data, setData] = useState({
       user: "",
       password: "",
@@ -33,21 +36,24 @@ function Login() {
       });
     };
     const handleConfirm = (e: any) => {
-      if(data.user=="lala" && data.password=="pepe"){
+      if(data.user=="aza" && data.password=="1234"){
         setShowSuccess(true); 
-        setShowError(false); 
+        setShowError(false);
+        navigate('/home') 
       }
       else{
         setShowError(true);    
-        setShowSuccess(false);  
+        setShowSuccess(false); 
+        navigate('/reports') 
       }    
     };
+  
     return (
  
       <Grid container
-        justifyContent="center"  // Centra horizontalmente
-        alignItems="center"      // Centra verticalmente
-        style={{ minHeight: '100vh' }} // Altura mínima para centrar en toda la pantalla
+        justifyContent="center"  
+        alignItems="center"     
+        style={{ minHeight: '100vh' }} 
       >
       
       <Box component ='form'
@@ -58,7 +64,7 @@ function Login() {
          
           width:800,
           height:300,
-          border: '1px solid #ddd', // Bordes para el formulario
+          border: '1px solid #ddd', 
         }}>
           <Grid container spacing={{xs:0.5,sm:1, md:1.5 ,xl:2}}>
             <Grid size={12}>
