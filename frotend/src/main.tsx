@@ -4,6 +4,8 @@ import App from './App.tsx'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeOptions } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Provider } from 'react-redux'
+import { store } from './store/index'
 export const themeOptions: ThemeOptions = {
   palette: {
     mode: 'light',
@@ -45,7 +47,9 @@ createRoot(document.getElementById('root')!).render(
   <ThemeProvider theme={theme}>
     <StrictMode>
       <CssBaseline/>
+      <Provider store={store}>
       <App />
+      </Provider>
     </StrictMode>
   </ThemeProvider>
 )

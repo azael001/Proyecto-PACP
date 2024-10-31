@@ -8,7 +8,10 @@ import LockIcon from '@mui/icons-material/Lock';
 import AlertTitle from '@mui/material/AlertTitle';
 import Alert from '@mui/material/Alert'
  import {useNavigate } from 'react-router-dom'
+ import { useDispatch} from 'react-redux'
+ import { authActions} from  '../store/authSlice';
 function Login() {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
     const [data, setData] = useState({
@@ -37,13 +40,28 @@ function Login() {
     };
     const handleConfirm = (e: any) => {
       if(data.user=="aza" && data.password=="1234"){
-        setShowSuccess(true); 
-        setShowError(false);
+        dispatch(authActions.login({
+          name: data.user,
+          rol:'Administrador'
+        }))
+        navigate('/home') 
+      }
+      else if(data.user=="azael" && data.password=="1234"){
+        dispatch(authActions.login({
+          name: data.user,
+          rol:'NormalUser'
+        }))
+        navigate('/home') 
+      }
+      else if(data.user=="pablo" && data.password=="1234"){
+        dispatch(authActions.login({
+          name: data.user,
+          rol:'profesional'
+        }))
         navigate('/home') 
       }
       else{
-        setShowError(true);    
-        setShowSuccess(false); 
+      
         navigate('/reports') 
       }    
     };
