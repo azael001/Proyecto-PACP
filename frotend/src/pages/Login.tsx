@@ -61,8 +61,8 @@ function Login() {
         navigate('/home') 
       }
       else{
-      
-        navigate('/reports') 
+       setShowError(true)
+       
       }    
     };
   
