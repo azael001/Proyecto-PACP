@@ -25,8 +25,7 @@ function Home() {
   return (
     <>
     <Grid container  sx={{ justifyContent: 'center', alignItems: 'center' }}>
-      <Typography variant='h2' color='primary'> Home de Pablo Azael: Soy el usuario {userData.userName} 
-        y tengo el rol de {userData.userRol}</Typography>
+      <Typography variant='h2' color='primary'> Home de Pablo Azael: Soy el usuario {userData.userName} y tengo el rol de {userData.userRol}</Typography>
       <Button variant='outlined' size='large' onClick={salir}>Salir</Button>
       </Grid>
     </>

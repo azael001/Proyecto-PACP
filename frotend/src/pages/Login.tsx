@@ -14,12 +14,32 @@ function Login() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  async function isVerifiedUser () { 
+  fetch(`http://localhost:3030/login?user=${data.user}&password=${data.password}`)
+  .then(response => response.json())
+  .then (response => {
+  console.log('Lo que nos llega de la base de datos: ')
+  console.log(response.data)
+ 
+  if (response.data.length !== 0){
+  
+    dispatch(authActions.login({
+      name: data.user,
+      rol: response.data.rol
+    }))
+    navigate('/home') 
+  } else{
+    setShowError(true)
+    }
+   })
+   }
+   
+
     const [data, setData] = useState({
       user: "",
       password: "",
       
     });
-    const [showSuccess, setShowSuccess] = useState(false); 
     const [showError, setShowError] = useState(false); 
     const handleSubmit = (e : any) => {
       
@@ -37,33 +57,6 @@ function Login() {
         ...data,
         password: e.target.value,
       });
-    };
-    const handleConfirm = (e: any) => {
-      if(data.user=="aza" && data.password=="1234"){
-        dispatch(authActions.login({
-          name: data.user,
-          rol:'Administrador'
-        }))
-        navigate('/home') 
-      }
-      else if(data.user=="azael" && data.password=="1234"){
-        dispatch(authActions.login({
-          name: data.user,
-          rol:'NormalUser'
-        }))
-        navigate('/home') 
-      }
-      else if(data.user=="pablo" && data.password=="1234"){
-        dispatch(authActions.login({
-          name: data.user,
-          rol:'profesional'
-        }))
-        navigate('/home') 
-      }
-      else{
-       setShowError(true)
-       
-      }    
     };
   
     return (
@@ -122,15 +115,9 @@ function Login() {
               type="submit"
               sx={{backgroundColor:"primary.main",color:"white"}}
               fullWidth
-              onClick={handleConfirm}>
+              onClick={isVerifiedUser}>
                 Acceder
               </Button>
-              {showSuccess && (
-              <Alert severity="success">
-               <AlertTitle>Success</AlertTitle>
-                La contraseña es correcta
-              </Alert>
-              )}
               {showError && (
               <Alert severity="error">
                <AlertTitle>Error</AlertTitle>
