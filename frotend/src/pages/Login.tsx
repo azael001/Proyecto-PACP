@@ -20,9 +20,7 @@ function Login() {
   .then (response => {
   console.log('Lo que nos llega de la base de datos: ')
   console.log(response.data)
- 
   if (response.data.length !== 0){
-  
     dispatch(authActions.login({
       name: data.user,
       rol: response.data.rol
