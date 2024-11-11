@@ -3,7 +3,7 @@ const express = require('express')
 const cors = require('cors')
 //importo el fichero login.js que está en la carpeta services
 const login = require('./services/login')
-const { insertData } = require('./services/item')
+const item = require('./services/item')
 
 //Definimos el puerto por que va a escuchar nuestra API las peticiones
 const port  = 3030
@@ -49,7 +49,7 @@ try {
  res.json(await item.insertData(req))
 }catch(err){
     console.error('Error while inserting items' , err.message);
-    
+    next(err)
     }
 })
   
