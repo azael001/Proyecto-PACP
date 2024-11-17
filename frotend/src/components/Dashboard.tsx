@@ -34,7 +34,7 @@ function Dashboard() {
 
   async function handleSubmit(e: any) {
     e.preventDefault()
-    //Para que no mande el formulario, sino que haga lo que yo le diga
+ 
     console.log(item)
     fetch(`http://localhost:3030/addItem?nombre=${item.nombre}&marca=${item.marca}&tipo=${item.tipo}&precio=${item.precio}`)
       .then(response => response.json())
@@ -47,6 +47,7 @@ function Dashboard() {
           alert('No se han insertado bien')
         }
       })
+      setItem(itemInitialState)
   };
 
   async function handleDeleteItem(row: any) {
@@ -86,6 +87,7 @@ function Dashboard() {
     });
   };
 
+
   const handleChangeTipo = (e: any) => {
     setItem({
       ...item,
@@ -99,7 +101,7 @@ function Dashboard() {
       precio: parseFloat(e.target.value),
     });
   };
-  
+
   return (
 
     <Box component="form" sx={{ width: 1 }} onSubmit={handleSubmit}>
