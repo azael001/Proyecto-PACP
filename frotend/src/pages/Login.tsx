@@ -1,15 +1,13 @@
-import Box from "@mui/material/Box";
-import { useState } from "react";
-import Grid from "@mui/material/Grid2";
-import TextField from "@mui/material/TextField";
-import Button  from '@mui/material/Button';
-import Typography  from "@mui/material/Typography";
+import {Typography, TextField, Button, Box, Alert } from '@mui/material';
+import { useState } from 'react';
 import LockIcon from '@mui/icons-material/Lock';
-import AlertTitle from '@mui/material/AlertTitle';
-import Alert from '@mui/material/Alert'
- import {useNavigate } from 'react-router-dom'
- import { useDispatch} from 'react-redux'
- import { authActions} from  '../store/authSlice';
+import { useNavigate } from 'react-router-dom'
+// Importamos el useDispatch del react-redux
+import { useDispatch} from 'react-redux'
+// Importamos las acciones que están en el fichero authSlice.ts
+import { authActions } from '../store/authSlice';
+import Grid from '@mui/material/Grid2';
+
 function Login() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -118,7 +116,6 @@ function Login() {
               </Button>
               {showError && (
               <Alert severity="error">
-               <AlertTitle>Error</AlertTitle>
                 La contraseña es incorrecta
               </Alert>
                )}

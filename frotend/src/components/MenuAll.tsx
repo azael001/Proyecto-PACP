@@ -32,6 +32,7 @@ function MenuAll() {
     console.log(userData)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [admin, setadmin] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const[img,setImg]=React.useState<string>('');
     const toggleDrawer = (newOpen: boolean) => () => {
@@ -52,6 +53,16 @@ function MenuAll() {
           setImg(user)
         }
       },[userData.userRol])
+
+      useEffect(()=>{
+        if(userData.userRol=='admin'){
+          setadmin(true)
+        }
+        else{
+          setadmin(false)
+        }
+
+      });
      
     
     
@@ -68,6 +79,9 @@ function MenuAll() {
            </Link>
           </List>
           <Divider />
+
+         {admin &&( 
+          <>
           <List>
           <Link to={'/reports'}  style={{textDecoration:'none', color:'black'}}>
               <ListItem >
@@ -79,6 +93,8 @@ function MenuAll() {
               </Link>
           </List>
           <Divider />
+          </>
+          )}
           <List>
               <ListItem >
                 <ListItemButton>
