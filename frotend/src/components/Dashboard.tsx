@@ -40,7 +40,9 @@ function Dashboard() {
 
   async function handleSubmit(e: any) {
     e.preventDefault()
- 
+    const isValid = item.nombre && item.marca && item.tipo && item.precio;
+    
+  if (isValid) {
     console.log(item)
     fetch(`http://localhost:3030/addItem?nombre=${item.nombre}&marca=${item.marca}&tipo=${item.tipo}&precio=${item.precio}`)
       .then(response => response.json())
@@ -54,8 +56,12 @@ function Dashboard() {
         }
       })
       setItem(itemInitialState)
-  };
-
+  } else {
+    alert("rellene todos los campos")
+  }
+};
+ 
+    
   async function handleDeleteItem(row: any) {
     fetch(`http://localhost:3030/deleteItem?id=${row.id}`)
       .then(response => response.json())

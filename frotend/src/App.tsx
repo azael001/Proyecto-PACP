@@ -3,7 +3,6 @@ import Home from './pages/Home'
 import Reports from './pages/Reports'
 import ErrorPage from './pages/ErrorPage'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import MenuAll from './components/MenuAll'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -20,11 +19,7 @@ const router = createBrowserRouter([
       {
         path: 'reports',
         element: <Reports/>
-      },
-      {
-        path: 'menu',
-        element: <MenuAll/>
-      } 
+      }
      ]
   },
  ]);

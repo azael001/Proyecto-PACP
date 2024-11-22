@@ -22,7 +22,6 @@ import HelpIcon from '@mui/icons-material/Help';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import { useEffect } from 'react';
 import ad from '../assets/ad.png'
 import user from '../assets/user.png'
 
@@ -32,9 +31,11 @@ function MenuAll() {
     console.log(userData)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [admin, setadmin] = React.useState(false);
+
     const [open, setOpen] = React.useState(false);
-    const[img,setImg]=React.useState<string>('');
+    const isAdmin = userData.userRol === 'admin';
+    const userImg = isAdmin ? ad : user;
+
     const toggleDrawer = (newOpen: boolean) => () => {
       setOpen(newOpen);
       };
@@ -45,24 +46,8 @@ function MenuAll() {
         ))
         navigate('/')
       }
-      useEffect(() =>{
-        if(userData.userRol=='admin'){
-          setImg(ad)
-        }
-        else{
-          setImg(user)
-        }
-      },[userData.userRol])
+  
 
-      useEffect(()=>{
-        if(userData.userRol=='admin'){
-          setadmin(true)
-        }
-        else{
-          setadmin(false)
-        }
-
-      });
      
     
     
@@ -80,7 +65,7 @@ function MenuAll() {
           </List>
           <Divider />
 
-         {admin &&( 
+         {isAdmin &&( 
           <>
           <List>
           <Link to={'/reports'}  style={{textDecoration:'none', color:'black'}}>
@@ -133,7 +118,7 @@ function MenuAll() {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
           {userData.userName}
         </Typography>
-        <Avatar alt="User Image" src={img}></Avatar>
+        <Avatar alt="User Image" src={userImg}></Avatar>
       </Toolbar>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}

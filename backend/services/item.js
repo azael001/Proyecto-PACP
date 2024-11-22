@@ -41,9 +41,11 @@ async function deleteData (req, res) {
 datos que ha sido borrado. Si ese número es mayor que cero es que ha habido borrado en la base de datos.*/
   return result.affectedRows
 }
+
 //Al final del fichero exporto las funciones getData, insertData y deleteData
 module.exports = {
    getData,
    insertData,
-   deleteData
+   deleteData,
+   
 }

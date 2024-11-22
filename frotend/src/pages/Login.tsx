@@ -116,7 +116,7 @@ function Login() {
               </Button>
               {showError && (
               <Alert severity="error">
-                La contraseña es incorrecta
+                El usuario o contraseña que ha introducido es incorrecto
               </Alert>
                )}
               </Grid>
