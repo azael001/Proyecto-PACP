@@ -7,6 +7,7 @@ import { useDispatch} from 'react-redux'
 // Importamos las acciones que están en el fichero authSlice.ts
 import { authActions } from '../store/authSlice';
 import Grid from '@mui/material/Grid2';
+import Tooltip from '@mui/material/Tooltip';
 
 function Login() {
   const dispatch = useDispatch()
@@ -106,6 +107,7 @@ function Login() {
               />
               </Grid>
               <Grid size={12}>
+              <Tooltip title="Acceder a la aplicación">
               <Button
               variant="outlined"
               type="submit"
@@ -114,6 +116,7 @@ function Login() {
               onClick={isVerifiedUser}>
                 Acceder
               </Button>
+              </Tooltip>
               {showError && (
               <Alert severity="error">
                 El usuario o contraseña que ha introducido es incorrecto

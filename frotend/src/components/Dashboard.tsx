@@ -12,6 +12,7 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import Tooltip from "@mui/material/Tooltip";
 import { useEffect } from "react";
 import { useSelector } from 'react-redux'
 import { RootState } from '../store/index'
@@ -172,7 +173,9 @@ function Dashboard() {
           />
         </Grid>
         <Grid size={{ xs: 6, md: 4, xl: 12 }} ></Grid>
+        <Tooltip title="Insertar Datos">
         <Button variant='contained' sx={{ mt: 2, width: 0.6 }} type='submit' >+Insertar Datos</Button>
+        </Tooltip>
       </Grid>
       <TableContainer>
         <Table aria-label="coleccion">
@@ -191,9 +194,11 @@ function Dashboard() {
               <TableRow key={row.id}>
                 {admin &&(
                 <TableCell>
+                   <Tooltip title="Borrar registro">
                   <Button onClick={() => handleDeleteItem(row)}>
                     <DeleteForeverIcon />
                   </Button>
+                  </Tooltip>
                 </TableCell>)}
                 <TableCell>{row.nombre}</TableCell>
                 <TableCell>{row.marca}</TableCell>

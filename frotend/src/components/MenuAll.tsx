@@ -24,6 +24,7 @@ import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import ad from '../assets/ad.png'
 import user from '../assets/user.png'
+import  Tooltip from '@mui/material/Tooltip';
 
 
 function MenuAll() {
@@ -55,12 +56,14 @@ function MenuAll() {
         <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
           <List >
           <Link to={'/home'}  style={{textDecoration:'none', color:'black'}} >
+          <Tooltip title="Home">
               <ListItem >
                 <ListItemButton >
                   <HomeIcon sx={{mr:2}}></HomeIcon>
                   <ListItemText>Home</ListItemText> 
                 </ListItemButton>
               </ListItem>
+              </Tooltip>
            </Link>
           </List>
           <Divider />
@@ -69,33 +72,41 @@ function MenuAll() {
           <>
           <List>
           <Link to={'/reports'}  style={{textDecoration:'none', color:'black'}}>
+          <Tooltip title="Informes">
               <ListItem >
                 <ListItemButton>
                   <InsertDriveFileIcon sx={{mr:2}}></InsertDriveFileIcon>
                   <ListItemText>Informes</ListItemText> 
                 </ListItemButton>
               </ListItem>
+          </Tooltip>
               </Link>
           </List>
           <Divider />
           </>
           )}
           <List>
+          <Link to={'/manualUsuario.pdf'} target='_blank' style={{textDecoration:'none', color:'black'}}>
+          <Tooltip title="Visualizar manual de usuario">
               <ListItem >
                 <ListItemButton>
                   <HelpIcon sx={{mr:2}}></HelpIcon>
                   <ListItemText>Ayuda</ListItemText> 
                 </ListItemButton>
               </ListItem>
+              </Tooltip>
+              </Link>
           </List>
           <Divider />
           <List>
+            <Tooltip title="Salir de la aplicación">
               <ListItem >
                 <ListItemButton onClick={salirLogin}>
                   <ExitToAppIcon sx={{mr:2}}></ExitToAppIcon>
                   <ListItemText>Salir</ListItemText> 
                 </ListItemButton>
               </ListItem>
+              </Tooltip>
           </List>
           <Divider />
         </Box>
@@ -105,6 +116,7 @@ function MenuAll() {
     <Box sx={{ flexGrow: 1 }}>
     <AppBar position="static">
       <Toolbar>
+      <Tooltip title="Menu">
         <IconButton
           size="large"
           edge="start"
@@ -115,6 +127,7 @@ function MenuAll() {
         >
           <MenuIcon />
         </IconButton>
+        </Tooltip>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
           {userData.userName}
         </Typography>
