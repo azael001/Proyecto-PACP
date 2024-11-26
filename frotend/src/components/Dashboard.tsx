@@ -1,9 +1,7 @@
-
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid2";
 import TextField from "@mui/material/TextField";
 import  { useState } from "react";
-import React from "react";
 import { Button } from '@mui/material';
 import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
@@ -14,8 +12,8 @@ import TableBody from "@mui/material/TableBody";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Tooltip from "@mui/material/Tooltip";
 import { useEffect } from "react";
-import { useSelector } from 'react-redux'
-import { RootState } from '../store/index'
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/index';
 function Dashboard() {
   useEffect(() => {
     fetchData();
@@ -36,8 +34,8 @@ function Dashboard() {
   const userData = useSelector((state: RootState) => state.authenticator)
   const [tableData, setTableData] = useState([])
   const [item, setItem] = useState(itemInitialState)
-  const [admin, setadmin] = React.useState(false);
 
+  const isAdmin = userData.userRol === 'admin';
 
   async function handleSubmit(e: any) {
     e.preventDefault()
@@ -114,15 +112,7 @@ function Dashboard() {
       precio: parseFloat(e.target.value),
     });
   };
-  useEffect(()=>{
-    if(userData.userRol=='admin'){
-      setadmin(true)
-    }
-    else{
-      setadmin(false)
-    }
 
-  });
  
 
 
@@ -130,7 +120,6 @@ function Dashboard() {
 
     <Box component="form" sx={{ width: 1 }} onSubmit={handleSubmit}>
       <Grid container sx={{ mt: 2, justifyContent: 'center' }} >
-
         <Grid size={{ xs: 6, md: 4, xl: 3 }}>
           <TextField
             required
@@ -181,7 +170,7 @@ function Dashboard() {
         <Table aria-label="coleccion">
           <TableHead>
             <TableRow>
-              {admin &&(
+              {isAdmin &&(
               <TableCell></TableCell>)}
               <TableCell>Nombre</TableCell>
               <TableCell>Marca</TableCell>
@@ -192,7 +181,7 @@ function Dashboard() {
           <TableBody>
             {tableData.map((row: itemtype) => (
               <TableRow key={row.id}>
-                {admin &&(
+                {isAdmin &&(
                 <TableCell>
                    <Tooltip title="Borrar registro">
                   <Button onClick={() => handleDeleteItem(row)}>
@@ -208,12 +197,6 @@ function Dashboard() {
           </TableBody>
         </Table>
       </TableContainer>
-
-
-
-
-
-
     </Box>
   );
 }

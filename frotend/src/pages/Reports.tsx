@@ -16,8 +16,7 @@ function Reports() {
     if (!isLoggedin) {
     navigate('/')
     }
-    
-    }, [isLoggedin, navigate])
+    }, [isLoggedin, navigate]) /*Array de dependencia si cambia el login utilzia el navigate*/
 
     return (
         <>
